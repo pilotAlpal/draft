@@ -1,15 +1,13 @@
-
 def bag(index,items,released,to_release,selection):
     if index>=len(items):
-       return released,selection
+       return released,dict(selection)
     if items[index]['cap']+released>to_release:
        return bag(index+1,items,released,to_release,selection)
     rsed0,slctd0=bag(index+1,items,released,to_release,selection)
     selection[items[index]['name']]=True
     rsed1,slctd1=bag(index+1,items,released+items[index]['cap'],to_release,selection)
-#    selection[items[index]['name']]=False
+    selection[items[index]['name']]=False
     if rsed0>rsed1:
-       selection[items[index]['name']]=False
        return rsed0,slctd0
     return rsed1,slctd1
 
